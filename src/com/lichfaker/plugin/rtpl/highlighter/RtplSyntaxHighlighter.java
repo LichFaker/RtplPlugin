@@ -64,7 +64,7 @@ public class RtplSyntaxHighlighter extends SyntaxHighlighterBase {
         } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
             return pack(BAD_CHARACTER);
         } else {
-            return pack(BAD_CHARACTER);
+            return EMPTY;
         }
     }
 }
