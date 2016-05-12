@@ -25,11 +25,11 @@ Comment_end             = [\\\-][\\\>]
 StringSq                = \'([^\\\'\r\n]|\\[^\r\n])*(\')
 StringDq                = \"([^\\\"])*(\")
 String                  = {StringSq}|{StringDq}
-//Identifier              = [:jletter:][:jletterdigit:]*
-Attributate             = [<] {InputCharacter}*
+Identifier              = [a-zA-Z_][a-zA-Z0-9_]*
+Attributate             = {WhiteSpace}+{Identifier}(\\\:{Identifier})*{WhiteSpace}*={WhiteSpace}*
+Symbol                  = =|\{|\}|\(|\)|=>|\.
 
 %state S_STRING
-%state S_TAG
 
 %%
 
@@ -39,11 +39,9 @@ Attributate             = [<] {InputCharacter}*
     {LineTerminator}        { if(isComment) {return COMMENT;}return NEWLINE;}
     {WhiteSpace}+           { if(isComment) {return COMMENT;}return TokenType.WHITE_SPACE; }
     {String}                { if(isComment) {return COMMENT;}return STRING; }
-    .                       { if(isComment) {return COMMENT;} return BAD_CHARACTER;}
+    {Symbol}                { if(isComment) {return COMMENT;}return SYMBOL; }
+    {Attributate}           { if(isComment) {return COMMENT;}return ATTRIBUTATE; }
+    .                       { if(isComment) {return COMMENT;}return BAD_CHARACTER;}
 }
 
-
-<S_TAG> {
-    {Attributate}           {return KEYWORD;}
-}
 .                           {return BAD_CHARACTER;}

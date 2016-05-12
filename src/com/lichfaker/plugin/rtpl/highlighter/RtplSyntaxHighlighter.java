@@ -1,5 +1,6 @@
 package com.lichfaker.plugin.rtpl.highlighter;
 
+import com.intellij.ide.highlighter.XmlFileHighlighter;
 import com.intellij.lexer.Lexer;
 import com.intellij.lexer.XmlHighlightingLexer;
 import com.intellij.lexer.XmlLexer;
@@ -21,18 +22,16 @@ import java.awt.*;
  * Created by lichfaker on 16/5/4.
  */
 public class RtplSyntaxHighlighter extends SyntaxHighlighterBase {
-
-    public static final TextAttributesKey COMMENT = createTextAttributesKey("NSIS_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
-    public static final TextAttributesKey STRING = createTextAttributesKey("NSIS_STRING", DefaultLanguageHighlighterColors.STRING);
-    public static final TextAttributesKey NUMBER = createTextAttributesKey("NSIS_NUMBER", DefaultLanguageHighlighterColors.NUMBER);
-    public static final TextAttributesKey IDENTIFIER = createTextAttributesKey("NSIS_IDENTIFIER", DefaultLanguageHighlighterColors.IDENTIFIER);
-    public static final TextAttributesKey BLOCK_DECLARATION = createTextAttributesKey("NSIS_BLOCK", DefaultLanguageHighlighterColors.FUNCTION_DECLARATION);
-    public static final TextAttributesKey KEYWORD = createTextAttributesKey("NSIS_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
-    public static final TextAttributesKey INSTRUCTION = createTextAttributesKey("NSIS_INSTRUCTION", DefaultLanguageHighlighterColors.FUNCTION_CALL);
-    public static final TextAttributesKey CONSTANT = createTextAttributesKey("NSIS_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
-    public static final TextAttributesKey SPECIAL_SYMBOL = createTextAttributesKey("NSIS_SPECIAL_SYMBOL", DefaultLanguageHighlighterColors.OPERATION_SIGN);
-    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("NSIS_BAD_CHARACTER", new TextAttributes(Color.RED, null, null, null, Font.BOLD));
-
+    // KEYWORD,NUMBER,STRING,INSTANCE_FIELD,INSTANCE_METHOD,CONSTANT
+    public static final TextAttributesKey COMMENT = createTextAttributesKey("RTPL_COMMENT", DefaultLanguageHighlighterColors.LINE_COMMENT);
+    public static final TextAttributesKey STRING = createTextAttributesKey("RTPL_STRING", DefaultLanguageHighlighterColors.STRING);
+    public static final TextAttributesKey ATTRIBUTATE = createTextAttributesKey("RTPL_ATTRIBUTATE", DefaultLanguageHighlighterColors.NUMBER);
+    public static final TextAttributesKey SYMBOL = createTextAttributesKey("RTPL_SYMBOL", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+    public static final TextAttributesKey KEYWORD = createTextAttributesKey("RTPL_KEYWORD", DefaultLanguageHighlighterColors.KEYWORD);
+    public static final TextAttributesKey INSTRUCTION = createTextAttributesKey("RTPL_INSTRUCTION", DefaultLanguageHighlighterColors.FUNCTION_CALL);
+    public static final TextAttributesKey CONSTANT = createTextAttributesKey("RTPL_CONSTANT", DefaultLanguageHighlighterColors.CONSTANT);
+    public static final TextAttributesKey SPECIAL_SYMBOL = createTextAttributesKey("RTPL_SPECIAL_SYMBOL", DefaultLanguageHighlighterColors.OPERATION_SIGN);
+    public static final TextAttributesKey BAD_CHARACTER = createTextAttributesKey("RTPL_BAD_CHARACTER", new TextAttributes(Color.RED, null, null, null, Font.BOLD));
 
     @NotNull
     @Override
@@ -45,25 +44,14 @@ public class RtplSyntaxHighlighter extends SyntaxHighlighterBase {
     public TextAttributesKey[] getTokenHighlights(IElementType tokenType) {
         if (tokenType.equals(RtplElementTypes.STRING)) {
             return pack(STRING);
-        } else if (tokenType.equals(RtplElementTypes.NUMBER)) {
-            return pack(NUMBER);
-        } else if (tokenType.equals(RtplElementTypes.IDENTIFIER)) {
-            return pack(IDENTIFIER);
-        } else if (tokenType.equals(RtplElementTypes.INSTRUCTION)) {
-            return pack(INSTRUCTION);
-        } else if (tokenType.equals(RtplElementTypes.BLOCK_DECLARATION)) {
-            return pack(BLOCK_DECLARATION);
+        } else if (tokenType.equals(RtplElementTypes.ATTRIBUTATE)) {
+            return pack(ATTRIBUTATE);
         } else if (tokenType.equals(RtplElementTypes.COMMENT)) {
             return pack(COMMENT);
-        } else if (tokenType.equals(RtplElementTypes.CONSTANT) || tokenType.equals(RtplElementTypes.VALUE) || tokenType.equals(RtplElementTypes.VARIABLE)) {
-            return pack(CONSTANT);
-        } else if (tokenType.equals(RtplElementTypes.KEYWORD)) {
-            return pack(KEYWORD);
-        } else if (tokenType.equals(RtplElementTypes.SPECIAL_SYMBOL)) {
-            return pack(SPECIAL_SYMBOL);
-        } else if (tokenType.equals(TokenType.BAD_CHARACTER)) {
-            return pack(BAD_CHARACTER);
-        } else {
+        } else if (tokenType.equals(RtplElementTypes.SYMBOL)) {
+            return pack(SYMBOL);
+        }
+        else {
             return EMPTY;
         }
     }
