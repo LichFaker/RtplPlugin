@@ -29,6 +29,7 @@
     <fileTypeFactory implementation="com.lichfaker.plugin.rtpl.file.RtplFileTypeFactory"/>
 
     <lang.syntaxHighlighterFactory key="Rtpl" implementationClass="com.lichfaker.plugin.rtpl.highlighter.RtplSyntaxHighlighterFactory"/>
+
   </extensions>
 
   <actions>
