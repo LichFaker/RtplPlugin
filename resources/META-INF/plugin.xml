@@ -30,6 +30,7 @@
 
     <lang.syntaxHighlighterFactory key="Rtpl" implementationClass="com.lichfaker.plugin.rtpl.highlighter.RtplSyntaxHighlighterFactory"/>
 
+    <colorSettingsPage implementation="com.lichfaker.plugin.rtpl.settings.RtplColorSettingsPage"/>
   </extensions>
 
   <actions>

@@ -12,39 +12,42 @@ import com.lichfaker.plugin.rtpl.parsing.RtplTokenType;
 %%
 
 %{
-  private IElementType elTokenType = XML_DATA_CHARACTERS;
-  private IElementType elTokenType2 = XML_ATTRIBUTE_VALUE_TOKEN;
-  private IElementType javaEmbeddedTokenType = XML_ATTRIBUTE_VALUE_TOKEN;
-  private boolean myConditionalCommentsSupport;
+      private int yyline;
+      private int yycolumn;
 
-  public void setConditionalCommentsSupport(final boolean b) {
-    myConditionalCommentsSupport = b;
-  }
+      private IElementType elTokenType = XML_DATA_CHARACTERS;
+      private IElementType elTokenType2 = XML_ATTRIBUTE_VALUE_TOKEN;
+      private IElementType javaEmbeddedTokenType = XML_ATTRIBUTE_VALUE_TOKEN;
+      private boolean myConditionalCommentsSupport;
 
-  public void setElTypes(IElementType _elTokenType,IElementType _elTokenType2) {
-    elTokenType = _elTokenType;
-    elTokenType2 = _elTokenType2;
-  }
+      public void setConditionalCommentsSupport(final boolean b) {
+        myConditionalCommentsSupport = b;
+      }
 
-  public void setJavaEmbeddedType(IElementType _tokenType) {
-    javaEmbeddedTokenType = _tokenType;
-  }
+      public void setElTypes(IElementType _elTokenType,IElementType _elTokenType2) {
+        elTokenType = _elTokenType;
+        elTokenType2 = _elTokenType2;
+      }
 
-  private int myPrevState = YYINITIAL;
+      public void setJavaEmbeddedType(IElementType _tokenType) {
+        javaEmbeddedTokenType = _tokenType;
+      }
 
-  public int yyprevstate() {
-    return myPrevState;
-  }
+      private int myPrevState = YYINITIAL;
 
-  private int popState(){
-    final int prev = myPrevState;
-    myPrevState = YYINITIAL;
-    return prev;
-  }
+      public int yyprevstate() {
+        return myPrevState;
+      }
 
-  protected void pushState(int state){
-    myPrevState = state;
-  }
+      private int popState(){
+        final int prev = myPrevState;
+        myPrevState = YYINITIAL;
+        return prev;
+      }
+
+      protected void pushState(int state){
+        myPrevState = state;
+      }
 
       // This adds support for nested states. I'm no JFlex pro, so maybe this is overkill, but it works quite well.
       private final LinkedList<Integer> states = new LinkedList<Integer>();
@@ -157,10 +160,13 @@ import com.lichfaker.plugin.rtpl.parsing.RtplTokenType;
 
 %unicode
 %class RtplLexer
+%line
+%column
 %public
 %implements FlexLexer, RtplTokenType
 %function advance
 %type IElementType
+
 
 %state TAG
 %state END_TAG
@@ -294,6 +300,8 @@ else { return XML_ATTRIBUTE_VALUE_JS_CONTENT;}
 <ATTR_LIST,ATTR,TAG,END_TAG> {S} { return XML_WHITE_SPACE; }
 <YYINITIAL> ([^<&\$# \n\r\t\f]|(\\\$)|(\\#))* { return XML_DATA_CHARACTERS; }
 <YYINITIAL> [^<&\ \n\r\t\f]|(\\\$)|(\\#) { return XML_DATA_CHARACTERS; }
+
+<<EOF>> { yyline = 0; yycolumn = 0; return null;}
 
 [^] { if(yystate() == YYINITIAL){
         return XML_BAD_CHARACTER;
