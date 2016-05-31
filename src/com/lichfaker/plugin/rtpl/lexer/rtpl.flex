@@ -61,28 +61,6 @@ import com.lichfaker.plugin.rtpl.parsing.RtplTokenType;
           yybegin(state);
       }
 
-      // ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr']
-      private static final ArrayList<String> singleTags = new ArrayList<>();
-
-      static {
-          singleTags.add("area");
-          singleTags.add("base");
-          singleTags.add("br");
-          singleTags.add("col");
-          singleTags.add("embed");
-          singleTags.add("hr");
-          singleTags.add("img");
-          singleTags.add("input");
-          singleTags.add("keygen");
-          singleTags.add("link");
-          singleTags.add("menuitem");
-          singleTags.add("meta");
-          singleTags.add("param");
-          singleTags.add("source");
-          singleTags.add("track");
-          singleTags.add("wbr");
-      }
-
       private static final ArrayList<String> jsKeywords = new ArrayList<>();
       private static final ArrayList<String> jsFields = new ArrayList<>();
 
@@ -153,9 +131,6 @@ import com.lichfaker.plugin.rtpl.parsing.RtplTokenType;
           jsFields.add("console");
       }
 
-      private boolean isSingleTag(String tag) {
-          return singleTags.contains(tag);
-      }
 %}
 
 %unicode

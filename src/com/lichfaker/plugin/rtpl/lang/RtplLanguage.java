@@ -1,6 +1,11 @@
 package com.lichfaker.plugin.rtpl.lang;
 
 import com.intellij.lang.Language;
+import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory;
+import com.intellij.openapi.fileTypes.SyntaxHighlighter;
+import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
+import com.lichfaker.plugin.rtpl.highlighter.RtplSyntaxHighlighter;
+import org.intellij.lang.plist.fileTypes.PListSyntaxHighlighter;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -14,6 +19,14 @@ public class RtplLanguage extends Language {
 
     protected RtplLanguage() {
         super(NAME);
+        SyntaxHighlighterFactory.LANGUAGE_FACTORY.addExplicitExtension(this,
+                new SingleLazyInstanceSyntaxHighlighterFactory() {
+                    @NotNull
+                    protected SyntaxHighlighter createHighlighter() {
+                        return new RtplSyntaxHighlighter();
+                    }
+                }
+        );
     }
 
     @NotNull
