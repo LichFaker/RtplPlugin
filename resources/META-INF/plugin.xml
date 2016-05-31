@@ -2,16 +2,19 @@
   <id>com.lichfaker.plugin.id</id>
   <name>RtplPlugin</name>
   <version>1.0.0</version>
-  <vendor email="lichfaker@gmail.com" url="http://www.yourcompany.com">LichFaker</vendor>
+  <vendor email="lichfaker@gmail.com" url="https://github.com/LichFaker/RtplPlugin">LichFaker</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Support for Rtpl.
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+      <html>
+        <dl>
+            <dt>20160601</dt>
+            <dd>highlight the rtpl</dd>
+        </dl>
+        </html>
     ]]>
   </change-notes>
 
