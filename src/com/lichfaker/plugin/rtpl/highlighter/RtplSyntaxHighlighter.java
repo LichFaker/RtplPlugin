@@ -37,7 +37,7 @@ public class RtplSyntaxHighlighter extends SyntaxHighlighterBase {
             createTextAttributesKey("RTPL_XML_STRING", DefaultLanguageHighlighterColors.STRING);
     // JS 关键字
     public static final TextAttributesKey RTPL_JS_KEYWORDS =
-            createTextAttributesKey("RTPL_JS_KEYWORDS", JavaHighlightingColors.KEYWORD);
+            createTextAttributesKey("RTPL_JS_KEYWORDS", DefaultLanguageHighlighterColors.KEYWORD);
     // JS 关键字
     public static final TextAttributesKey RTPL_JS_GLOBAL_VARIABLE =
             createTextAttributesKey("RTPL_JS_GLOBAL_VARIABLE", DefaultLanguageHighlighterColors.INSTANCE_FIELD);
@@ -85,80 +85,4 @@ public class RtplSyntaxHighlighter extends SyntaxHighlighterBase {
         return SyntaxHighlighterBase.pack(XmlHighlighterColors.HTML_CODE, keys1.get(tokenType));
     }
 
-    // ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'menuitem', 'meta', 'param', 'source', 'track', 'wbr']
-//    private static final LinkedList<String> singleTags = new LinkedList<>();
-//
-//    static {
-//        singleTags.addLast("area");
-//        singleTags.addLast("base");
-//        singleTags.addLast("br");
-//        singleTags.addLast("col");
-//        singleTags.addLast("embed");
-//        singleTags.addLast("hr");
-//        singleTags.addLast("img");
-//        singleTags.addLast("input");
-//        singleTags.addLast("keygen");
-//        singleTags.addLast("link");
-//        singleTags.addLast("menuitem");
-//        singleTags.addLast("meta");
-//        singleTags.addLast("param");
-//        singleTags.addLast("source");
-//        singleTags.addLast("track");
-//        singleTags.addLast("wbr");
-//    }
-
-//
-//    private boolean isSingleTag(String tag) {
-//        return singleTags.contains(tag);
-//    }
-//
-//    Stack<Map.Entry<String, Boolean>> mCurTag = new Stack<>();
-//
-//    private boolean addTag(String tag) {
-//        boolean flag = true;
-//        if (!mCurTag.isEmpty()) {
-//            Map.Entry<String, Boolean> last = mCurTag.peek();
-//            flag = last.getValue();
-//        }
-//        Map.Entry<String, Boolean> entry = new AbstractMap.SimpleEntry<String, Boolean>(tag, false);
-//        mCurTag.push(entry);
-//        return flag;
-//    }
-//
-//    private void closeTag() {
-//        if (!mCurTag.isEmpty()) {
-//            Map.Entry<String, Boolean> last = mCurTag.peek();
-//            last.setValue(true);
-//        }
-//    }
-//
-//    private boolean removeTag(String tag) {
-//        if (mCurTag.isEmpty()) {
-//            return false;
-//        }
-//        Map.Entry<String, Boolean> entry = mCurTag.peek();
-//        String key = entry.getKey();
-//        boolean val = entry.getValue();
-//        if (tag == null) {
-//            if (isSingleTag(key)) {
-//                mCurTag.pop();
-//            } else if (val) {
-//                return false;
-//            } else {
-//                entry.setValue(true);
-//            }
-//        } else {
-//            if (key.equals(tag)) {
-//                if (val) {
-//                    mCurTag.pop();
-//                } else {
-//                    return false;
-//                }
-//            } else {
-//                mCurTag.pop();
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
 }

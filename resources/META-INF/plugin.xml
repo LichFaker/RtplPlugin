@@ -1,8 +1,13 @@
 <idea-plugin version="2">
   <id>com.lichfaker.plugin.id</id>
   <name>RtplPlugin</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <vendor email="lichfaker@gmail.com" url="https://github.com/LichFaker/RtplPlugin">LichFaker</vendor>
+
+  <!-- Mark the plugin as compatible with RubyMine and other products based on the IntelliJ platform -->
+  <depends>com.intellij.modules.lang</depends>
+  <depends>com.intellij.modules.xml</depends>
+  <depends>com.intellij.modules.platform</depends>
 
   <description><![CDATA[
       Support for Rtpl.
@@ -34,8 +39,6 @@
     <lang.syntaxHighlighterFactory key="Rtpl" implementationClass="com.lichfaker.plugin.rtpl.highlighter.RtplSyntaxHighlighterFactory"/>
 
     <colorSettingsPage implementation="com.lichfaker.plugin.rtpl.settings.RtplColorSettingsPage"/>
-
-    <annotator language="Rtpl" implementationClass="com.lichfaker.plugin.rtpl.annotator.RtplAnnotator"/>
 
     <lang.parserDefinition language="Rtpl" implementationClass="com.lichfaker.plugin.rtpl.parsing.RtplParserDefinition"/>
 

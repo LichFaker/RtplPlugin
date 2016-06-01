@@ -5,7 +5,6 @@ import com.intellij.openapi.fileTypes.SingleLazyInstanceSyntaxHighlighterFactory
 import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 import com.intellij.openapi.fileTypes.SyntaxHighlighterFactory;
 import com.lichfaker.plugin.rtpl.highlighter.RtplSyntaxHighlighter;
-import org.intellij.lang.plist.fileTypes.PListSyntaxHighlighter;
 import org.jetbrains.annotations.NotNull;
 
 /**

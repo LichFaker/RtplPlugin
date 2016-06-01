@@ -8,12 +8,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import com.lichfaker.plugin.rtpl.file.RtplFileType;
 import com.lichfaker.plugin.rtpl.impl.RtplPsiFileImpl;
 import com.lichfaker.plugin.rtpl.lang.RtplLanguage;
 import com.lichfaker.plugin.rtpl.lexer.RtplLexer;
 import com.lichfaker.plugin.rtpl.lexer.RtplLexerAdapter;
-import org.intellij.lang.plist.PListLanguage;
 import org.jetbrains.annotations.NotNull;
 import static com.intellij.psi.tree.TokenSet.create;
 
