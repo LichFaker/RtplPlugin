@@ -158,13 +158,12 @@ import com.lichfaker.plugin.rtpl.parsing.RtplTokenType;
 %state C_COMMENT_START
 %state C_COMMENT_END
 
-ALPHA=[:letter:]
+ALPHA=[a-zA-Z]
 DIGIT=[0-9]
 WS=[\ \n\r\t\f]
 S={WS}+
 
-NAME=({ALPHA}|"_"|":")({ALPHA}|{DIGIT}|"_"|"."|"-")*(":"({ALPHA}|"_")?({ALPHA}|{DIGIT}|"_"|"."|"-")*)?
-
+NAME=({ALPHA}|"_")({ALPHA}|{DIGIT}|"_"|".")*(":"({ALPHA}|"_")?({ALPHA}|{DIGIT}|"_"|".")*)?
 END_COMMENT="-->"
 CONDITIONAL_COMMENT_CONDITION=({ALPHA})({ALPHA}|{S}|{DIGIT}|"."|"("|")"|"|"|"!"|"&")*
 
@@ -249,6 +248,8 @@ else { return XML_ATTRIBUTE_VALUE_JS_CONTENT;}
 }
 
 <GLOBAL_VARIABLE> {
+    "{" {yypopstate();yypushstate(ATTR_VALUE_JS); return XML_ATTRIBUTE_VALUE_JS_START;}
+    "}" {yypopstate(); yypopstate();return XML_ATTRIBUTE_VALUE_JS_END;}
     {NAME} {return JS_GLOBAL_VARIABLE;}
     [^] {yypopstate(); return XML_ATTRIBUTE_VALUE_JS_CONTENT; }
 }
